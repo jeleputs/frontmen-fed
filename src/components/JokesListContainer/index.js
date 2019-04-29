@@ -5,8 +5,8 @@ import JokesComponent from '../JokesComponent';
 class JokesListContainer extends Component {
   render() {
     return (
-      <section>
-        <h1>Fresh new jokes</h1>
+      <section className="jokes-container jokes-list-container">
+        <h1>Fetch New Jokes</h1>
         <JokesComponent />
       </section>
     );
