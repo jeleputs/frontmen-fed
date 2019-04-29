@@ -43,6 +43,8 @@
       padding: 1rem;
       @include box-shadow;
       @include border('border');
+      width: 45%;
+      line-height: 2rem;
 
       h1 {
         padding: 0;
