@@ -8,7 +8,11 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <header>Chuck Norris jokes app - By Ric Aguilera</header>
+        <header>
+          Chuck Norris jokes app
+          <div className="pull-right my-picture" />
+          <div className="pull-right">Ric Aguilera</div>
+        </header>
         <main>
           <ActionsContainer />
           <JokesListContainer />
