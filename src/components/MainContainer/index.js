@@ -9,12 +9,12 @@ function MainContainer(props) {
   const API = 'https://api.icndb.com/jokes/random/';
 
   const [jokes, setJokes] = useState([]);
+  const { userCredentials, setUserCredentials } = props;
   const [favoritedJokes, setFavoritedJokes] = useStateWithSessionStorage(
-    'chuckNorrisApp/favoritedJokes',
+    'chuckNorrisApp/favoritedJokes/' + userCredentials.user.username,
     []
   );
   const [fetchingFavorites, setFetchingFavorites] = useState(false);
-  const { userCredentials, setUserCredentials } = props;
 
   useEffect(() => {
     if (userCredentials.token) {
@@ -108,6 +108,7 @@ function MainContainer(props) {
       })
     ]);
   }
+
   function logOut() {
     setFavoritedJokes([]);
     setUserCredentials({});
