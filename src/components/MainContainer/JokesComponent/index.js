@@ -3,7 +3,6 @@ import './styles.scss';
 
 function JokesComponent(props) {
   const { jokes, onClick } = props;
-  console.log('hasta aquí llega el jokes', jokes);
 
   return (
     <ul>
