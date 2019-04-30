@@ -6,7 +6,7 @@ import FavoritedJokesContainer from './FavoritedJokesContainer';
 import useStateWithSessionStorage from '../commons/useStateWithSessionStorage';
 
 function MainContainer(props) {
-  const API = 'https://api.icndb.com/jokes/random/';
+  const API = 'http://localhost:3000/jokes/';
 
   const [jokes, setJokes] = useState([]);
   const { userCredentials, setUserCredentials } = props;
@@ -21,7 +21,7 @@ function MainContainer(props) {
       fetch(API + '10')
         .then(response => response.json())
         .then(data => {
-          setJokes(data.value);
+          setJokes(data.body.value);
         });
     } else {
       props.history.push('/');
