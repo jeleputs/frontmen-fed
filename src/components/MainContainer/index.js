@@ -110,7 +110,6 @@ function MainContainer(props) {
   }
 
   function logOut() {
-    setFavoritedJokes([]);
     setUserCredentials({});
     props.history.push('/');
   }
