@@ -16,12 +16,13 @@ function MainContainer(props) {
   const [fetchingFavorites, setFetchingFavorites] = useState(false);
   const { userCredentials, setUserCredentials } = props;
 
-  useEffect(async () => {
+  useEffect(() => {
     if (userCredentials.token) {
-      const res = await fetch(API + '10');
-      const response = await res.json();
-      const jokes = await response;
-      setJokes(jokes.value);
+      fetch(API + '10')
+        .then(response => response.json())
+        .then(data => {
+          setJokes(data.value);
+        });
     } else {
       props.history.push('/');
     }
@@ -61,7 +62,7 @@ function MainContainer(props) {
             el === joke.id;
           })
       );
-      setFavoritedJokes([...favoritedJokes, joke]);
+      addJokeToFavorites(joke);
     }
     if (favoritedJokes.length >= 10) {
       setFetchingFavorites(false);
