@@ -4,9 +4,6 @@ import JokesComponent from '../JokesComponent';
 
 function FavoritedJokesContainer(props) {
   const { jokes, removeJokeFromFavorites } = props;
-
-  console.log('jokes', jokes);
-
   return (
     <section className="jokes-container favorited-jokes-container">
       <h1>Favorited Jokes</h1>

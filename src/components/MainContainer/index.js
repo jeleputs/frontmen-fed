@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './styles.scss';
 import ActionsContainer from './ActionsContainer';
 import JokesListContainer from './JokesListContainer';
@@ -6,27 +6,58 @@ import FavoritedJokesContainer from './FavoritedJokesContainer';
 import useStateWithSessionStorage from '../commons/useStateWithSessionStorage';
 
 function MainContainer(props) {
-  const API = 'https://api.icndb.com/jokes/random/10';
+  const API = 'https://api.icndb.com/jokes/random/';
 
   const [jokes, setJokes] = useState([]);
   const [favoritedJokes, setFavoritedJokes] = useStateWithSessionStorage(
     'chuckNorrisApp/favoritedJokes',
     []
   );
-
+  const [fetchingFavorites, setFetchingFavorites] = useState(false);
   const { userCredentials, setUserCredentials } = props;
 
-  useEffect(() => {
+  useEffect(async () => {
     if (userCredentials.token) {
-      fetch(API)
-        .then(response => response.json())
-        .then(data => {
-          setJokes(data.value);
-        });
+      const res = await fetch(API + '10');
+      const response = await res.json();
+      const jokes = await response;
+      setJokes(jokes.value);
     } else {
       props.history.push('/');
     }
   }, []);
+
+  customIntervalEffect(() => {
+    appendJoke();
+  }, 5000);
+
+  function customIntervalEffect(callback, delay) {
+    const prevCallback = useRef();
+    useEffect(() => {
+      prevCallback.current = callback;
+    }, [callback]);
+    useEffect(() => {
+      function tick() {
+        prevCallback.current();
+      }
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  }
+
+  async function appendJoke() {
+    if (favoritedJokes.length < 10 && fetchingFavorites) {
+      const res = await fetch(API + '1');
+      const response = await res.json();
+      const joke = await response.value[0];
+      setFavoritedJokes([...favoritedJokes, joke]);
+    }
+    if (favoritedJokes.length >= 10) {
+      setFetchingFavorites(false);
+    }
+  }
 
   function addJokeToFavorites(joke) {
     if (favoritedJokes.length >= 10) return false;
@@ -85,7 +116,10 @@ function MainContainer(props) {
         }`}</div>
       </header>
       <main>
-        <ActionsContainer />
+        <ActionsContainer
+          fetchingFavorites={fetchingFavorites}
+          setFetchingFavorites={setFetchingFavorites}
+        />
         <JokesListContainer
           jokes={jokes}
           addJokeToFavorites={addJokeToFavorites}
