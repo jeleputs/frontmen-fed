@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-const useStateWithSessionStorage = sessionStorageKey => {
+const useStateWithSessionStorage = (sessionStorageKey, defaultValue) => {
   const [value, setValue] = useState(
-    JSON.parse(sessionStorage.getItem(sessionStorageKey)) || ''
+    JSON.parse(sessionStorage.getItem(sessionStorageKey)) || defaultValue
   );
 
   useEffect(() => {

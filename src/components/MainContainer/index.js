@@ -3,12 +3,16 @@ import './styles.scss';
 import ActionsContainer from './ActionsContainer';
 import JokesListContainer from './JokesListContainer';
 import FavoritedJokesContainer from './FavoritedJokesContainer';
+import useStateWithSessionStorage from '../commons/useStateWithSessionStorage';
 
 function MainContainer(props) {
   const API = 'https://api.icndb.com/jokes/random/10';
 
   const [jokes, setJokes] = useState([]);
-  const [favoritedJokes, setFavoritedJokes] = useState([]);
+  const [favoritedJokes, setFavoritedJokes] = useStateWithSessionStorage(
+    'chuckNorrisApp/favoritedJokes',
+    []
+  );
 
   const { userCredentials, setUserCredentials } = props;
 
@@ -25,6 +29,8 @@ function MainContainer(props) {
   }, []);
 
   function addJokeToFavorites(joke) {
+    if (favoritedJokes.length >= 10) return false;
+
     setFavoritedJokes([
       ...favoritedJokes.filter(thisJoke => {
         if (thisJoke.id !== joke.id) {
@@ -62,6 +68,7 @@ function MainContainer(props) {
     ]);
   }
   function logOut() {
+    setFavoritedJokes([]);
     setUserCredentials({});
     props.history.push('/');
   }
