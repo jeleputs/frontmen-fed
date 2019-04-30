@@ -49,9 +49,18 @@ function MainContainer(props) {
 
   async function appendJoke() {
     if (favoritedJokes.length < 10 && fetchingFavorites) {
-      const res = await fetch(API + '1');
-      const response = await res.json();
-      const joke = await response.value[0];
+      let joke = {};
+      do {
+        const res = await fetch(API + '1');
+        const response = await res.json();
+        joke = await response.value[0];
+      } while (
+        favoritedJokes
+          .map(joke => joke.id)
+          .find(el => {
+            el === joke.id;
+          })
+      );
       setFavoritedJokes([...favoritedJokes, joke]);
     }
     if (favoritedJokes.length >= 10) {
