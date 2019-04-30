@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import './styles.scss';
 
-class JokesComponent extends Component {
-  render() {
-    return (
-      <ul>
-        <li>one joke</li>
-        <li>2 joke</li>
-        <li>3 joke</li>
-        <li>4 joke</li>
-        <li>5 joke</li>
-        <li>6 joke</li>
-        <li>7 joke</li>
-      </ul>
-    );
-  }
+function JokesComponent(props) {
+  const { jokes, onClick } = props;
+  console.log('hasta aquí llega el jokes', jokes);
+
+  return (
+    <ul>
+      {jokes.map(joke => (
+        <li key={joke.id} onClick={() => onClick(joke)}>
+          {joke.joke}
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export default JokesComponent;

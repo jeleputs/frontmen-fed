@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import './styles.scss';
 import JokesComponent from '../JokesComponent';
 
-class JokesListContainer extends Component {
-  render() {
-    return (
-      <section className="jokes-container jokes-list-container">
-        <h1>Fetch New Jokes</h1>
-        <JokesComponent />
-      </section>
-    );
-  }
+function JokesListContainer(props) {
+  const { jokes, addJokeToFavorites } = props;
+
+  return (
+    <section className="jokes-container jokes-list-container">
+      <h1>Fresh Jokes From The Server</h1>
+      <JokesComponent jokes={jokes} onClick={addJokeToFavorites} />
+    </section>
+  );
 }
 
 export default JokesListContainer;
