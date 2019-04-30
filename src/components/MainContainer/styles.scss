@@ -10,6 +10,15 @@
   .pull-right {
     float: right;
     font-size: 1rem;
+
+    &.logout-link {
+      @include button-base;
+      background: $secondary-button;
+      margin: 0.5rem 1rem;
+
+      height: 1rem;
+      line-height: 1rem;
+    }
   }
 
   header {

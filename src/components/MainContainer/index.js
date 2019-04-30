@@ -70,8 +70,12 @@ function MainContainer(props) {
     <div className="main-container">
       <header>
         Chuck Norris jokes app
-        <div className="pull-right my-picture" onClick={() => logOut()} />
-        <div className="pull-right">Ric Aguilera</div>
+        <div className="pull-right logout-link" onClick={() => logOut()}>
+          Logout
+        </div>
+        <div className="pull-right">{`${userCredentials.user.firstname} ${
+          userCredentials.user.lastname
+        }`}</div>
       </header>
       <main>
         <ActionsContainer />

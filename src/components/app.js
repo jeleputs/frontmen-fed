@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './app.scss';
 import MainContainer from './MainContainer';
 import LoginContainer from './LoginContainer';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import useStateWithSessionStorage from './commons/useStateWithSessionStorage';
 
 function App() {
-  const [userCredentials, setUserCredentials] = useState({});
+  const [userCredentials, setUserCredentials] = useStateWithSessionStorage(
+    'chuckNorrisApp/userCredentials'
+  );
 
   return (
     <Router>

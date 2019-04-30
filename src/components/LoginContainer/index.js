@@ -9,7 +9,6 @@ function LoginContainer(props) {
   const { userCredentials, setUserCredentials } = props;
 
   useEffect(() => {
-    console.log(userCredentials);
     if (userCredentials.token) {
       props.history.push('/dashboard');
     }
