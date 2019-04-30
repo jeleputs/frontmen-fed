@@ -28,3 +28,34 @@
     margin-left: 2rem;
   }
 }
+
+@mixin button-base {
+  color: $white;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+@mixin input-base {
+  background: none;
+  border: none;
+  @include border('border-bottom');
+  margin: 1rem 1rem 0 1rem;
+  padding: 0.5rem;
+  color: $input-font;
+
+  &::placeholder {
+    color: $main-button;
+  }
+
+  &:focus {
+    outline: 0;
+    border-bottom: 1px solid $main-button;
+
+    &::placeholder {
+      color: $color3;
+
+    }
+  }
+}

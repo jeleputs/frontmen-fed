@@ -1,0 +1,54 @@
+@import '../../commons/variables';
+@import '../../commons/mixins';
+
+.login-container {
+
+  height: 100%;
+
+  .login-form {
+    width: 400px;
+    height: 300px;
+    @include box-shadow;
+    @include border('border');
+    margin: auto;
+    position: relative;
+    top: 20%;
+    background: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .message {
+      margin: 0 1rem;
+      font-size: 0.8rem;
+      padding: 0.5rem;
+      min-height: 1rem;
+
+      &::before {
+        content: '';
+      }
+
+      &.error {
+        color: $color-error;
+        background-color: $background-error;
+        border: 1px solid $border-error;
+
+      }
+    }
+
+    button {
+      background: $main-button;
+      @include button-base;
+      padding: 0.7rem;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    input {
+      @include input-base;
+    }
+  }
+}
