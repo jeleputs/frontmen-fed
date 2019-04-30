@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.scss';
+import decodeEntities from '../../commons/decodeEntities';
 
 function JokesComponent(props) {
   const { jokes, onClick } = props;
@@ -8,7 +9,7 @@ function JokesComponent(props) {
     <ul>
       {jokes.map(joke => (
         <li key={joke.id} onClick={() => onClick(joke)}>
-          {joke.joke}
+          {decodeEntities(joke.joke)}
         </li>
       ))}
     </ul>

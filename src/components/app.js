@@ -7,7 +7,8 @@ import useStateWithSessionStorage from './commons/useStateWithSessionStorage';
 
 function App() {
   const [userCredentials, setUserCredentials] = useStateWithSessionStorage(
-    'chuckNorrisApp/userCredentials'
+    'chuckNorrisApp/userCredentials',
+    {}
   );
 
   return (
@@ -24,6 +25,7 @@ function App() {
         )}
       />
       <Route
+        exact
         path="/"
         render={props => (
           <LoginContainer
