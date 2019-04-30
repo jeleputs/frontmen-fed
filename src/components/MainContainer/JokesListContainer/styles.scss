@@ -1,0 +1,14 @@
+@import '../../../commons/variables';
+
+.jokes-list-container {
+  ul {
+    li {
+      &:hover {
+        &::before {
+          content: 'Favorite >> ';
+
+        }
+      }
+    }
+  }
+}

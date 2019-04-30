@@ -1,0 +1,48 @@
+{
+  "name": "frontmen-fed",
+  "version": "1.0.0",
+  "description": "Challenge for frontmen fed position",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node_modules/.bin/webpack-dev-server --mode development --open --hot",
+    "build": "node_modules/.bin/webpack --config webpack.prod.js --mode production",
+    "serve": "node_modules/.bin/http-server ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeleputs/frontmen-fed.git"
+  },
+  "keywords": [
+    "frontmen",
+    "react",
+    "challenge"
+  ],
+  "author": "Ric Aguilera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeleputs/frontmen-fed/issues"
+  },
+  "homepage": "https://github.com/jeleputs/frontmen-fed#readme",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.11.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}

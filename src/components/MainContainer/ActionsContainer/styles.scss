@@ -1,0 +1,13 @@
+@import '../../../commons/variables';
+
+.author {
+  position: absolute;
+  bottom: 2rem;
+
+  a {
+    color: $white;
+    text-decoration: none;
+    padding: 1rem;
+    line-height: 3rem;
+  }
+}

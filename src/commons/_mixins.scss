@@ -1,0 +1,61 @@
+@mixin border($prop) {
+  #{$prop}: 1px solid rgb(230, 230, 230);
+}
+
+@mixin box-shadow {
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 20px 5px $shadow;
+  -moz-box-shadow: 0px 0px 20px 5px $shadow;
+  box-shadow: 0px 0px 20px 5px $shadow;
+}
+
+@mixin gradient {
+  background: -moz-linear-gradient(0deg, $gradient-start 0%, $gradient-finish 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, $gradient-finish), color-stop(100%, $gradient-start));
+  background: -webkit-linear-gradient(0deg, $gradient-start 0%, $gradient-finish 100%);
+  background: -o-linear-gradient(0deg, $gradient-start 0%, $gradient-finish 100%);
+  background: -ms-linear-gradient(0deg, $gradient-start 0%, $gradient-finish 100%);
+  background: linear-gradient(90deg, $gradient-start 0%, $gradient-finish 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00B2E3', endColorstr='#00FFF7', GradientType=1);
+}
+
+@mixin photo-thumbnail {
+  .my-picture {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: $color3;
+    margin-left: 2rem;
+  }
+}
+
+@mixin button-base {
+  color: $white;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+@mixin input-base {
+  background: none;
+  border: none;
+  @include border('border-bottom');
+  margin: 1rem 1rem 0 1rem;
+  padding: 0.5rem;
+  color: $input-font;
+
+  &::placeholder {
+    color: $main-button;
+  }
+
+  &:focus {
+    outline: 0;
+    border-bottom: 1px solid $main-button;
+
+    &::placeholder {
+      color: $color3;
+
+    }
+  }
+}
