@@ -4,18 +4,24 @@ import ActionsContainer from './ActionsContainer';
 import JokesListContainer from './JokesListContainer';
 import FavoritedJokesContainer from './FavoritedJokesContainer';
 
-function MainContainer() {
+function MainContainer(props) {
   const API = 'https://api.icndb.com/jokes/random/10';
 
   const [jokes, setJokes] = useState([]);
   const [favoritedJokes, setFavoritedJokes] = useState([]);
 
+  const { userCredentials, setUserCredentials } = props;
+
   useEffect(() => {
-    fetch(API)
-      .then(response => response.json())
-      .then(data => {
-        setJokes(data.value);
-      });
+    if (userCredentials.token) {
+      fetch(API)
+        .then(response => response.json())
+        .then(data => {
+          setJokes(data.value);
+        });
+    } else {
+      props.history.push('/');
+    }
   }, []);
 
   function addJokeToFavorites(joke) {
@@ -55,12 +61,16 @@ function MainContainer() {
       })
     ]);
   }
+  function logOut() {
+    setUserCredentials({});
+    props.history.push('/');
+  }
 
   return (
-    <div className="container">
+    <div className="main-container">
       <header>
         Chuck Norris jokes app
-        <div className="pull-right my-picture" />
+        <div className="pull-right my-picture" onClick={() => logOut()} />
         <div className="pull-right">Ric Aguilera</div>
       </header>
       <main>
