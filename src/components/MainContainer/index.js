@@ -9,6 +9,7 @@ function MainContainer(props) {
   const API = 'http://localhost:3000/jokes/';
 
   const [jokes, setJokes] = useState([]);
+  const { userCredentials, setUserCredentials } = props;
   const [favoritedJokes, setFavoritedJokes] = useStateWithSessionStorage(
     'chuckNorrisApp/favoritedJokes/' + userCredentials.user.username,
     []
@@ -17,13 +18,16 @@ function MainContainer(props) {
   const [fetchingFavorites, setFetchingFavorites] = useState(false);
 
   useEffect(() => {
-    setFetchingFreshJokes(true);
-    fetch(API + '10')
-      .then(response => response.json())
-      .then(data => {
-        setJokes(data.value);
-      })
-      .then(() => setFetchingFreshJokes(false));
+    if (userCredentials.token) {
+      fetch(API + '10')
+        .then(response => response.json())
+        .then(data => {
+          setJokes(data.body.value);
+        })
+        .then(() => setFetchingFreshJokes(false));
+    } else {
+      props.history.push('/');
+    }
   }, []);
 
   customIntervalEffect(() => {
