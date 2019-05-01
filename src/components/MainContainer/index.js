@@ -6,11 +6,11 @@ import FavoritedJokesContainer from './FavoritedJokesContainer';
 import useStateWithSessionStorage from '../commons/useStateWithSessionStorage';
 
 function MainContainer(props) {
-  const API = 'https://api.icndb.com/jokes/random/';
+  const API = 'http://localhost:3000/jokes/';
 
   const [jokes, setJokes] = useState([]);
   const [favoritedJokes, setFavoritedJokes] = useStateWithSessionStorage(
-    'chuckNorrisApp/favoritedJokes/ric',
+    'chuckNorrisApp/favoritedJokes/' + userCredentials.user.username,
     []
   );
   const [fetchingFreshJokes, setFetchingFreshJokes] = useState(false);
@@ -119,7 +119,9 @@ function MainContainer(props) {
         <div className="pull-right logout-link" onClick={() => logOut()}>
           Logout
         </div>
-        <div className="pull-right">{`Ric`}</div>
+        <div className="pull-right">{`${userCredentials.user.firstname} ${
+          userCredentials.user.lastname
+        }`}</div>
       </header>
       <main>
         <ActionsContainer

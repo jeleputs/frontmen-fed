@@ -15,7 +15,7 @@ function App() {
     <Router>
       <Route
         exact
-        path="/"
+        path="/dashboard"
         render={props => (
           <MainContainer
             {...props}
@@ -26,7 +26,7 @@ function App() {
       />
       <Route
         exact
-        path="/asd"
+        path="/"
         render={props => (
           <LoginContainer
             {...props}
