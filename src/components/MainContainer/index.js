@@ -6,26 +6,21 @@ import FavoritedJokesContainer from './FavoritedJokesContainer';
 import useStateWithSessionStorage from '../commons/useStateWithSessionStorage';
 
 function MainContainer(props) {
-  const API = 'http://localhost:3000/jokes/';
+  const API = 'https://api.icndb.com/jokes/random/';
 
   const [jokes, setJokes] = useState([]);
-  const { userCredentials, setUserCredentials } = props;
   const [favoritedJokes, setFavoritedJokes] = useStateWithSessionStorage(
-    'chuckNorrisApp/favoritedJokes/' + userCredentials.user.username,
+    'chuckNorrisApp/favoritedJokes/ric',
     []
   );
   const [fetchingFavorites, setFetchingFavorites] = useState(false);
 
   useEffect(() => {
-    if (userCredentials.token) {
-      fetch(API + '10')
-        .then(response => response.json())
-        .then(data => {
-          setJokes(data.body.value);
-        });
-    } else {
-      props.history.push('/');
-    }
+    fetch(API + '10')
+      .then(response => response.json())
+      .then(data => {
+        setJokes(data.value);
+      });
   }, []);
 
   customIntervalEffect(() => {
@@ -121,9 +116,7 @@ function MainContainer(props) {
         <div className="pull-right logout-link" onClick={() => logOut()}>
           Logout
         </div>
-        <div className="pull-right">{`${userCredentials.user.firstname} ${
-          userCredentials.user.lastname
-        }`}</div>
+        <div className="pull-right">{`Ric`}</div>
       </header>
       <main>
         <ActionsContainer
