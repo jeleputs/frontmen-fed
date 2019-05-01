@@ -1,18 +1,25 @@
 import React from 'react';
 import './styles.scss';
 import decodeEntities from '../../commons/decodeEntities';
+import SvgLoader from '../../../commons/loader';
 
 function JokesComponent(props) {
-  const { jokes, onClick } = props;
-
+  const { jokes, onClick, isLoading } = props;
+  var loader = '';
+  if (isLoading) {
+    loader = <SvgLoader />;
+  }
   return (
-    <ul>
-      {jokes.map(joke => (
-        <li key={joke.id} onClick={() => onClick(joke)}>
-          {decodeEntities(joke.joke)}
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {jokes.map(joke => (
+          <li key={joke.id} onClick={() => onClick(joke)}>
+            {decodeEntities(joke.joke)}
+          </li>
+        ))}
+      </ul>
+      {loader}
+    </div>
   );
 }
 

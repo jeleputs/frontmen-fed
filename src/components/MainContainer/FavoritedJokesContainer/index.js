@@ -3,11 +3,16 @@ import './styles.scss';
 import JokesComponent from '../JokesComponent';
 
 function FavoritedJokesContainer(props) {
-  const { jokes, removeJokeFromFavorites } = props;
+  const { favoritedJokes, removeJokeFromFavorites, isLoading } = props;
+
   return (
     <section className="jokes-container favorited-jokes-container">
       <h1>Favorited Jokes</h1>
-      <JokesComponent jokes={jokes} onClick={removeJokeFromFavorites} />
+      <JokesComponent
+        jokes={favoritedJokes}
+        onClick={removeJokeFromFavorites}
+        isLoading={isLoading}
+      />
     </section>
   );
 }

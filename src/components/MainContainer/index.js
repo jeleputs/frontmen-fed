@@ -13,14 +13,17 @@ function MainContainer(props) {
     'chuckNorrisApp/favoritedJokes/ric',
     []
   );
+  const [fetchingFreshJokes, setFetchingFreshJokes] = useState(false);
   const [fetchingFavorites, setFetchingFavorites] = useState(false);
 
   useEffect(() => {
+    setFetchingFreshJokes(true);
     fetch(API + '10')
       .then(response => response.json())
       .then(data => {
         setJokes(data.value);
-      });
+      })
+      .then(() => setFetchingFreshJokes(false));
   }, []);
 
   customIntervalEffect(() => {
@@ -126,10 +129,12 @@ function MainContainer(props) {
         <JokesListContainer
           jokes={jokes}
           addJokeToFavorites={addJokeToFavorites}
+          isLoading={fetchingFreshJokes}
         />
         <FavoritedJokesContainer
-          jokes={favoritedJokes}
+          favoritedJokes={favoritedJokes}
           removeJokeFromFavorites={removeJokeFromFavorites}
+          isLoading={fetchingFavorites}
         />
       </main>
       <footer />
