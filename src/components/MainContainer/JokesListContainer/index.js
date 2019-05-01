@@ -3,12 +3,16 @@ import './styles.scss';
 import JokesComponent from '../JokesComponent';
 
 function JokesListContainer(props) {
-  const { jokes, addJokeToFavorites } = props;
+  const { jokes, addJokeToFavorites, isLoading } = props;
 
   return (
     <section className="jokes-container jokes-list-container">
       <h1>Fresh Jokes From The Server</h1>
-      <JokesComponent jokes={jokes} onClick={addJokeToFavorites} />
+      <JokesComponent
+        jokes={jokes}
+        onClick={addJokeToFavorites}
+        isLoading={isLoading}
+      />
     </section>
   );
 }

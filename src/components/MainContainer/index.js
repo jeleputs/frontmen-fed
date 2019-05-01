@@ -14,6 +14,7 @@ function MainContainer(props) {
     'chuckNorrisApp/favoritedJokes/' + userCredentials.user.username,
     []
   );
+  const [fetchingFreshJokes, setFetchingFreshJokes] = useState(false);
   const [fetchingFavorites, setFetchingFavorites] = useState(false);
 
   useEffect(() => {
@@ -22,7 +23,8 @@ function MainContainer(props) {
         .then(response => response.json())
         .then(data => {
           setJokes(data.body.value);
-        });
+        })
+        .then(() => setFetchingFreshJokes(false));
     } else {
       props.history.push('/');
     }
@@ -133,10 +135,12 @@ function MainContainer(props) {
         <JokesListContainer
           jokes={jokes}
           addJokeToFavorites={addJokeToFavorites}
+          isLoading={fetchingFreshJokes}
         />
         <FavoritedJokesContainer
-          jokes={favoritedJokes}
+          favoritedJokes={favoritedJokes}
           removeJokeFromFavorites={removeJokeFromFavorites}
+          isLoading={fetchingFavorites}
         />
       </main>
       <footer />
