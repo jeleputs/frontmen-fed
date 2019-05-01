@@ -25,12 +25,12 @@ ul {
                 position: absolute;
                 margin: 0;
                 top: 0;
-                left: 0;
+                right: 0;
                 bottom: 0;
                 padding: auto 2rem;
                 font-weight: bolder;
                 font-size: 2rem;
-                z-index: 0;
+                z-index: -1;
                 line-height: 100%;
             }
         }

@@ -7,6 +7,8 @@
                 &::before {
                     background: $secondary-button-transparent;
                     content: '<< Unfavorite ';
+                    left: 0;
+                    right: auto;
                 }
             }
         }
