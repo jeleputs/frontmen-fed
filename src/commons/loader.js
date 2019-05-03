@@ -10,7 +10,7 @@ export default function svgLoader() {
       className="lds-ellipsis"
       style={{
         background: 'none',
-        'shape-rendering': 'auto',
+        shapeRendering: 'auto',
         display: 'block',
         margin: 'auto'
       }}

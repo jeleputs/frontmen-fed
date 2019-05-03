@@ -56,7 +56,7 @@ function MainContainer(props) {
       do {
         const res = await fetch(API + '1');
         const response = await res.json();
-        joke = await response.value[0];
+        joke = await response.body.value[0];
       } while (
         favoritedJokes
           .map(joke => joke.id)
